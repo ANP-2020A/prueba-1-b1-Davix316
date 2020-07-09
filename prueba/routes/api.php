@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\products;
+use App\customers;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,18 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
+
+Route::get('customers', 'CustomersController@index');
+Route::get('customers/{customers}', 'CustomersController@show');
+Route::post('customers', 'CustomersController@store');
+Route::put('customers/{customers}', 'CustomersController@update');
+Route::delete('customers/{customers}', 'CustomersController@delete');
+
+Route::get('products', 'ProductsController@index');
+Route::get('products/{products}', 'ProductsController@show');
+Route::post('products', 'ProductsController@store');
+Route::put('products/{products}', 'ProductsController@update');
+Route::delete('products/{products}', 'ProductsController@delete');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
